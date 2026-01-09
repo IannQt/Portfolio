@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ian Jay Kyle Tipanero | Portfolio Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+:root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #020617;
+    --accent: #2563eb;
+}
+.dark {
+    --bg: #0f172a;
+    --card: #020617;
+    --text: #e5e7eb;
+    --accent: #38bdf8;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', sans-serif;
+    background-image: radial-gradient(circle at 20% 20%, #dbeafe, transparent 50%),
+                      radial-gradient(circle at 80% 80%, #bae6fd, transparent 60%);
+    background-size: cover;
+}
+
+.navbar {
+    background: var(--card);
+}
+.nav-link {
+    color: var(--text) !important;
+}
+.nav-link:hover {
+    color: var(--accent) !important;
+}
+.card {
+    background: var(--card);
+    border-radius: 16px;
+    border: none;
+}
+.dash-card {
+  background: var(--card);
+  padding: 30px;
+  border-radius: 18px;
+  text-align: center;
+  transition: 0.25s;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+.dash-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+h3.fw-bold {
+  font-size: 32px;
+  background: linear-gradient(to right, #007bff, #00d4ff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+h5 {
+    color: var(--accent);
+}
+section {
+    padding-top: 80px;
+}
+
+#about .card {
+  background: #ffffff;
+  border-radius: 18px;
+}
+
+#about p {
+  font-size: 0.95rem;
+}
+
+#about .btn-info {
+  background: #00bfff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+#about .btn-outline-info {
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.timeline {
+  position: relative;
+  margin-left: 20px;
+  border-left: 3px solid #00bfff;
+  padding-left: 20px;
+}
+
+.timeline-item {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.timeline-item .circle {
+  width: 14px;
+  height: 14px;
+  background: #00bfff;
+  border-radius: 50%;
+  position: absolute;
+  left: -29px;
+  top: 5px;
+}
+
+.timeline-item .content h5 {
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.seminar-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.btn-view-certs {
+  background: #00bfff;
+  border: none;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: .2s;
+}
+.btn-view-certs:hover {
+  background: #0097cc;
+}
+/* TECH STACK GRID */
+.tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #020617;
+  transition: 0.25s ease;
+}
+
+.tech-item i {
+  font-size: 18px;
+  color: #2563eb;
+}
+
+.tech-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  background: #eef6ff;
+}
+
+#projects .card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#projects .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.zoom-img {
+  cursor: zoom-in;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.zoom-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+/* NEXT / PREV BUTTONS */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  font-size: 40px;
+  padding: 10px 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.left-btn {
+  left: 20px;
+}
+
+.right-btn {
+  right: 20px;
+}
+
+.nav-btn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.social-icons a {
+  font-size: 1.4rem;
+  color: #0d6efd;
+  transition: 0.2s;
+}
+
+.social-icons a:hover {
+  color: #002d72;
+  transform: scale(1.1);
+}
+/* Fade + Slide Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all .8s ease-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Counter Number Style */
+.counter {
+  font-weight: 700;
+  font-size: 34px;
+}
+
+/* PROJECT MODAL ENHANCEMENT */
+.project-header {
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  color: #fff;
+  padding: 25px;
+  border-radius: 0 0 20px 20px;
+}
+
+.tech-badge {
+  background: rgba(255,255,255,0.2);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-right: 6px;
+}
+
+.gallery-section h4 {
+  font-weight: 700;
+  margin: 30px 0 15px;
+  color: #2563eb;
+}
+
+.gallery-card {
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.gallery-card img {
+  border-radius: 10px;
+}
+/* WIDE / NEW WINDOW STYLE MODAL */
+.custom-wide-modal {
+  max-width: 95vw;
+}
+
+.custom-wide-modal .modal-content {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+@media (min-width: 992px) {
+  .modal-dialog.custom-wide-modal {
+    margin: 20px auto;
+  }
+}
+
+
+</style>
+</head>
+
+<body id="theme">
+
+<!-- TOP NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top shadow">
+    <div class="container-fluid">
+        <!-- Navbar Toggler for mobile -->
+        <button class="navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link px-3" href="#overview">Overview</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#education">Education</a></li>
+                <!-- <li class="nav-item"><a class="nav-link px-3" href="#skills">Skills</a></li> -->
+                <li class="nav-item"><a class="nav-link px-3" href="#seminars">Seminars</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
+                <li class="nav-item">
+                    <button class="btn btn-sm btn-outline-info ms-2" onclick="toggleTheme()">🌙</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container mt-5 pt-4">
+
+<!-- OVERVIEW -->
+<section id="overview">
+<h3 class="fw-bold text-center mb-4 fade-in">Dashboard Overview</h3>
+
+<div class="row justify-content-center mt-4">
+
+  <!-- PROFILE CARD (already fine) -->
+  <div class="col-lg-4 col-md-6 mb-4 fade-in">
+      <div class="card p-4 text-center shadow-lg border-0"
+           style="background: rgba(255,255,255,0.65); backdrop-filter: blur(12px); border-radius: 20px;">
+          <div class="d-flex justify-content-center">
+              <img src="photo/ian.JPG" alt="Profile" class="rounded-circle shadow mb-3"
+                   style="width: 150px; height: 150px; object-fit: cover;">
+          </div>
+          <h4 class="fw-bold mt-2">HI, I'm Ian Jay Kyle Tipanero</h4>
+          <p class="text-secondary mb-2">BSIT Student | Programmer</p>
+
+          <div class="social-icons mt-1">
+              <a href="https://facebook.com" target="_blank" class="me-2"><i class="bi bi-facebook fs-5"></i></a>
+              <a href="https://instagram.com" target="_blank" class="me-2"><i class="bi bi-instagram fs-5"></i></a>
+              <a href="https://tiktok.com" target="_blank"><i class="bi bi-tiktok fs-5"></i></a>
+          </div>
+      </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="col-lg-8 col-md-12">
+      <div class="row g-3">
+
+          <div class="col-md-6">
+              <div class="dash-card fade-in">
+                  <i class="bi bi-laptop fs-2 mb-2 text-info"></i>
+                  <h5 class="fw-bold">Course</h5>
+                  <h2 class="counter" data-target="1">BSIT</h2> <!-- 1 = BSIT -->
+              </div>
+          </div>
+
+          <div class="col-md-6">
+              <div class="dash-card fade-in">
+                  <i class="bi bi-calendar-check fs-2 mb-2 text-info"></i>
+                  <h5 class="fw-bold">Graduation</h5>
+                  <h2 class="counter" data-target="2026">2026</h2>
+              </div>
+          </div>
+
+          <div class="col-md-6">
+              <div class="dash-card fade-in">
+                  <i class="bi bi-mortarboard fs-2 mb-2 text-info"></i>
+                  <h5 class="fw-bold">Seminars</h5>
+                  <h2 class="counter" data-target="4">0</h2>
+              </div>
+          </div>
+
+          <div class="col-md-6">
+              <div class="dash-card fade-in">
+                  <i class="bi bi-geo-alt fs-2 mb-2 text-info"></i>
+                  <h5 class="fw-bold">Location</h5>
+                  <h2 class="counter" data-target="PH">PH</h2> <!-- 1 = PH -->
+              </div>
+          </div>
+
+      </div>
+  </div>
+
+</div>
+</section>
+
+
+
+<!-- ABOUT -->
+<section id="about">
+  <h3 class="fw-bold text-center mb-4">About Me</h3>
+
+  <div class="card p-4 border-0 shadow-sm rounded-3 mx-auto" style="max-width: 950px;">
+    <p class="text-secondary">
+      I am an Information Technology student at Camarines Sur Polytechnic Colleges specializing in
+      <strong>Web Systems</strong>, <strong>IT Support</strong>, and <strong>Technical Documentation</strong>.
+      I am highly adaptable, detail-oriented, and capable of working effectively in team environments.
+    </p>
+
+    <hr>
+
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <p class="mb-2"><i class="bi bi-calendar text-info"></i> <strong>Date of Birth:</strong> January 19, 2004</p>
+        <p class="mb-2"><i class="bi bi-person-heart text-info"></i> <strong>Civil Status:</strong> Single</p>
+        <p class="mb-2"><i class="bi bi-globe2 text-info"></i> <strong>Nationality:</strong> Filipino</p>
+      </div>
+      <div class="col-md-6">
+        <p class="mb-2"><i class="bi bi-badge-cc text-info"></i> <strong>Religion:</strong> Roman Catholic</p>
+        <p class="mb-2"><i class="bi bi-person-badge text-info"></i> <strong>Age:</strong> 21 years old</p>
+        <p class="mb-2"><i class="bi bi-gender-male text-info"></i> <strong>Gender:</strong> Male</p>
+      </div>
+    </div>
+
+    <div class="mt-4 d-flex gap-2">
+      <a href="Tipanero_IanJayKyle_OJT_CV.pdf" target="_blank" class="btn btn-outline-info px-4">
+        <i class="bi bi-eye"></i> View CV
+      </a>
+      <a href="Tipanero_IanJayKyle_OJT_CV.pdf" download class="btn btn-info text-white px-4">
+        <i class="bi bi-download"></i> Download CV
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- EDUCATION -->
+<section id="education">
+  <h3 class="section-title">Education</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="circle"></div>
+      <div class="content">
+        <h5>Bachelor of Science in Information Technology</h5>
+        <p>Camarines Sur Polytechnic Colleges (2022–2026)</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="circle"></div>
+      <div class="content">
+        <h5>Senior High School – General Academic Strand</h5>
+        <p>Holy Trinity College of Camarines Sur — Graduated with Honors</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="circle"></div>
+      <div class="content">
+        <h5>Junior High & Elementary</h5>
+        <p>Graduated with Honors</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="skills">
+  <h3 class="fw-bold mb-3">Tech Stack</h3>
+
+  <div class="card p-4 shadow-sm border-0 rounded-4">
+    <div class="tech-grid">
+
+      <div class="tech-item">
+        <i class="bi bi-filetype-html"></i> HTML
+      </div>
+
+      <div class="tech-item">
+        <i class="bi bi-filetype-css"></i> CSS
+      </div>
+
+      <div class="tech-item">
+        <i class="bi bi-wind"></i> Tailwind CSS
+      </div>
+
+      <div class="tech-item">
+        <i class="bi bi-bootstrap"></i> Bootstrap
+      </div>
+
+      <div class="tech-item">
+        <i class="bi bi-code-slash"></i> PHP
+      </div>
+
+      <div class="tech-item">
+        <i class="bi bi-database"></i> MySQL
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- SEMINARS -->
+<section id="seminars">
+  <h3 class="section-title">Seminars & Training</h3>
+
+  <div class="seminar-card">
+    <ul>
+      <li><strong>13th Bicol Youth Congress in IT</strong> – April 10–11, 2025<br>
+        “Building the Future of Technology, One Byte at a Time”
+      </li>
+      <li class="mt-2"><strong>12th Bicol Youth Congress in IT</strong> – April 18–19, 2024<br>
+        “Infinite Loops: Exploring Endless Possibilities of Technology”
+      </li>
+      <li class="mt-2"><strong>11th Bicol Youth Congress in IT</strong> – April 20–21, 2023<br>
+        “Metaverse: Transcending Future to Digital Reality”
+      </li>
+      <li class="mt-2"><strong>Awareness Campaign</strong> – March 10–14, 2025<br>
+        “Turning Concepts into Startups Through Technology Business Incubation”
+      </li>
+    </ul>
+
+    <!-- 🔥 Certificates Button -->
+    <button class="btn-view-certs" onclick="openCerts()">View Certificates</button>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h3 class="fw-bold mb-4">Academic & Personal Projects</h3>
+
+  <div class="row g-4">
+
+    <!-- LEFT PROJECT -->
+    <div class="col-md-6">
+      <div class="card p-4 h-100 shadow-sm border-0 rounded-4">
+        <h5 class="text-primary fw-bold">
+          🦷 BARANGAY CLEARANCE AND CERTIFICATION SYSTEM
+        </h5>
+
+        <p class="mt-2">
+          Web-based system that handles online certificate requests from barangay residents.
+        </p>
+
+        <p><strong>Role:</strong> Full-Stack Developer</p>
+        <p><strong>Tech Stack:</strong> React Native, PHP, MySQL, Bootstrap</p>
+        <p><strong>Impact:</strong> Reduced manual processing time for barangay staff</p>
+
+        <a href="#barangayProject"
+           data-bs-toggle="modal"
+           class="text-info fw-semibold text-decoration-none mt-auto">
+          Click to view project
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT PROJECT -->
+    <div class="col-md-6">
+      <div class="card p-4 h-100 shadow-sm border-0 rounded-4">
+        <h5 class="text-primary fw-bold">
+          🏋️ GYM MEMBERS RECORD MANAGEMENT SYSTEM
+        </h5>
+
+        <p class="mt-2">
+          Developed a record management system for gym establishments to manage member
+          information, membership packages, trainers, and daily visitor logs.
+        </p>
+
+        <p><strong>Role:</strong> Programmer / Developer</p>
+        <p><strong>Tech Stack:</strong> Java</p>
+        <p>
+          <strong>Impact:</strong>
+          Reduced reliance on manual record keeping by providing a centralized and
+          structured data management solution.
+        </p>
+
+        <!-- PDF LINK -->
+        <a href="IT2BGroup5 - Proposal.pdf"
+           target="_blank"
+           class="text-info fw-semibold text-decoration-none mt-auto">
+          📄 Click to view project proposal
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+    <section id="contact">
+        <h3>Contact</h3>
+            <div class="card p-4 mt-3">
+                <p>📞 <strong>+63 951 497 9533</strong></p>
+                <p>📧 <strong>kyletipanero19@gmail.com</strong></p>
+                <p>📍 <strong>Masoli, Bato, Camarines Sur</strong></p>
+            </div>
+    </section>
+</div>
+
+<!-- BARANGAY PROJECT MODAL -->
+<div class="modal fade" id="barangayProject" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-lg-down modal-xl modal-dialog-centered modal-dialog-scrollable custom-wide-modal">
+    <div class="modal-content border-0">
+
+      <!-- HEADER -->
+      <div class="project-header">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <h4 class="fw-bold mb-1">Barangay Clearance & Certification System</h4>
+            <p class="mb-2">Web-based Government Service System</p>
+
+            <span class="tech-badge">React Native</span>
+            <span class="tech-badge">PHP</span>
+            <span class="tech-badge">MySQL</span>
+            <span class="tech-badge">Bootstrap</span>
+          </div>
+
+          <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body px-4">
+
+        <p class="text-secondary mt-3">
+          This system allows barangay residents to request official documents online
+          while administrators manage approvals, records, and reports efficiently.
+        </p>
+
+        <!-- USER SIDE -->
+        <div class="gallery-section">
+          <h4>👤 User Side</h4>
+
+          <div class="row g-3">
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/user/usertype.png" class="img-fluid zoom-img">
+            </div>
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/user/user.png" class="img-fluid zoom-img">
+            </div>
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/user/register.png" class="img-fluid zoom-img">
+            </div>
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/user/dashboard.png" class="img-fluid zoom-img">
+            </div>
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/user/document.png" class="img-fluid zoom-img">
+            </div>
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/user/request.png" class="img-fluid zoom-img">
+            </div>
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/user/track.png" class="img-fluid zoom-img">
+            </div>
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/user/profile.png" class="img-fluid zoom-img">
+            </div>
+          </div>
+        </div>
+
+        <!-- ADMIN SIDE -->
+        <div class="gallery-section">
+          <h4>🛠 Admin Side</h4>
+
+          <div class="row g-3">
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/admin/admin.png" class="img-fluid zoom-img">
+            </div>
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/admin/admin-dashboard.png" class="img-fluid zoom-img">
+            </div>
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/admin/admin-request.png" class="img-fluid zoom-img">
+            </div>
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/admin/admin-approve.png" class="img-fluid zoom-img">
+            </div>
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/admin/admin-reject.png" class="img-fluid zoom-img">
+            </div>
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/admin/admin-userregister.png" class="img-fluid zoom-img">
+            </div>
+            <div class="col-md-6 gallery-card">
+              <img src="photo/barangay/admin/admin-viewinfo.png" class="img-fluid zoom-img">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <button class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- IMAGE ZOOM MODAL -->
+<div class="modal fade" id="imageZoomModal" tabindex="-1">
+  <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+    <div class="modal-content bg-dark">
+
+      <div class="modal-header border-0">
+        <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body d-flex justify-content-center align-items-center position-relative">
+
+        <!-- PREV BUTTON -->
+        <button class="nav-btn left-btn" onclick="prevImage()">❮</button>
+
+        <!-- IMAGE -->
+        <img id="zoomedImage" class="img-fluid rounded shadow">
+
+        <!-- NEXT BUTTON -->
+        <button class="nav-btn right-btn" onclick="nextImage()">❯</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleTheme() {
+            document.getElementById('theme').classList.toggle('dark');
+        }
+    </script>
+
+    <script>
+    let images = [];
+    let currentIndex = 0;
+
+    document.addEventListener("DOMContentLoaded", () => {
+    images = Array.from(document.querySelectorAll(".zoom-img"));
+
+    images.forEach((img, index) => {
+        img.addEventListener("click", () => {
+        currentIndex = index;
+        showImage();
+        });
+    });
+    });
+
+    function showImage() {
+    document.getElementById("zoomedImage").src = images[currentIndex].src;
+    new bootstrap.Modal(document.getElementById("imageZoomModal")).show();
+    }
+
+    function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage();
+    }
+
+    function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage();
+    }
+    </script>
+
+
+<!-- ========== CERTIFICATE MODAL ========== -->
+<div id="certModal" class="modal" style="display:none;">
+  <span class="close" onclick="closeCerts()">&times;</span>
+  <img id="certImg" class="modal-content">
+  <div class="caption" id="certCaption"></div>
+
+  <a class="prev" onclick="changeCert(-1)">❮</a>
+  <a class="next" onclick="changeCert(1)">❯</a>
+</div>
+
+<script>
+let certIndex = 0;
+const certs = ["by-11.png","by-11.2.png","by-12.png","by-13.png"]; // images beside index.html
+
+function openCerts() {
+  document.getElementById("certModal").style.display = "block";
+  showCert(certIndex);
+}
+function closeCerts() {
+  document.getElementById("certModal").style.display = "none";
+}
+function changeCert(n) {
+  certIndex = (certIndex + n + certs.length) % certs.length;
+  showCert(certIndex);
+}
+function showCert(i) {
+  document.getElementById("certImg").src = certs[i];
+  document.getElementById("certCaption").innerHTML = certs[i];
+}
+</script>
+
+<style>
+.modal {
+  position: fixed;
+  z-index: 2000;
+  padding-top: 100px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+}
+.modal-content {
+  display: block;
+  margin: auto;
+  width: 60%;
+  max-width: 900px;
+}
+.close {
+  position: absolute;
+  top: 30px; right: 50px;
+  color: #fff; font-size: 40px;
+  cursor: pointer;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  font-size: 40px;
+  color: white;
+  user-select: none;
+}
+.prev { left: 0; }
+.next { right: 0; }
+</style>
+
+<script>
+// Counter Animation
+const counters = document.querySelectorAll('.counter');
+const speed = 500; // speed lower = faster
+
+function animateCounters() {
+  counters.forEach(counter => {
+    const target = +counter.getAttribute('data-target');
+    const value = +counter.innerText;
+
+    const increment = target / speed;
+
+    if (value < target) {
+      counter.innerText = Math.ceil(value + increment);
+      setTimeout(animateCounters, 10);
+    }
+  });
+}
+
+// Fade In on Scroll
+const faders = document.querySelectorAll('.fade-in');
+function scrollAnimation() {
+  const triggerBottom = window.innerHeight * 0.85;
+  faders.forEach(el => {
+    const boxTop = el.getBoundingClientRect().top;
+    if (boxTop < triggerBottom) {
+      el.classList.add('show');
+      animateCounters();
+    }
+  });
+}
+
+window.addEventListener('scroll', scrollAnimation);
+scrollAnimation();
+</script>
+
+
+</body>
+</html>
